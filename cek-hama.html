@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SawitKu - Cek Hama AI</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f7f4;
+            color: #26332c;
+            min-height: 100vh;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            background: linear-gradient(
+                135deg,
+                #198754,
+                #20a464
+            );
+
+            color: white;
+
+            padding: 18px 16px 25px;
+
+            border-radius:
+                0 0 28px 28px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .back-btn {
+            width: 42px;
+            height: 42px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.18
+            );
+
+            color: white;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-text span {
+            display: block;
+            font-size: 13px;
+            opacity: 0.85;
+            margin-bottom: 3px;
+        }
+
+        .header-text h1 {
+            font-size: 22px;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 100%;
+            max-width: 550px;
+
+            margin: -10px auto 0;
+
+            padding:
+                0 14px 35px;
+        }
+
+        /* ================= AI INFO ================= */
+
+        .ai-card {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            display: flex;
+
+            gap: 14px;
+
+            align-items: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
+
+            margin-bottom: 18px;
+        }
+
+        .ai-icon {
+            width: 52px;
+            height: 52px;
+
+            flex-shrink: 0;
+
+            border-radius: 15px;
+
+            background: #e8f7ef;
+
+            color: #198754;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+        .ai-card strong {
+            display: block;
+
+            font-size: 15px;
+
+            margin-bottom: 5px;
+        }
+
+        .ai-card p {
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        /* ================= CAMERA CARD ================= */
+
+        .camera-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
+        }
+
+        .camera-title {
+            margin-bottom: 15px;
+        }
+
+        .camera-title h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .camera-title p {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* ================= CAMERA ================= */
+
+        .camera-container {
+            position: relative;
+
+            width: 100%;
+
+            background: #111;
+
+            border-radius: 17px;
+
+            overflow: hidden;
+
+            aspect-ratio: 3 / 4;
+        }
+
+        #camera {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        /* GARIS KAMERA */
+
+        .camera-frame {
+            position: absolute;
+
+            inset: 12% 10%;
+
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.8
+                );
+
+            border-radius: 18px;
+
+            pointer-events: none;
+        }
+
+        .camera-frame::before,
+        .camera-frame::after {
+            content: "";
+
+            position: absolute;
+
+            width: 35px;
+            height: 35px;
+
+            border-color: #20a464;
+
+            border-style: solid;
+        }
+
+        .camera-frame::before {
+            top: -2px;
+            left: -2px;
+
+            border-width:
+                4px
+                0
+                0
+                4px;
+
+            border-radius:
+                10px
+                0
+                0
+                0;
+        }
+
+        .camera-frame::after {
+            bottom: -2px;
+            right: -2px;
+
+            border-width:
+                0
+                4px
+                4px
+                0;
+
+            border-radius:
+                0
+                0
+                10px
+                0;
+        }
+
+        .camera-text {
+            position: absolute;
+
+            top: 5%;
+
+            left: 0;
+            right: 0;
+
+            text-align: center;
+
+            color: white;
+
+            font-size: 13px;
+
+            text-shadow:
+                0 1px 4px
+                rgba(0, 0, 0, 0.8);
+        }
+
+        /* ================= CAMERA BUTTON ================= */
+
+        .camera-controls {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-top: 17px;
+        }
+
+        .capture-btn {
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            border:
+                5px solid
+                #dcefe4;
+
+            background: #198754;
+
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 5px 15px
+                rgba(
+                    25,
+                    135,
+                    84,
+                    0.3
+                );
+        }
+
+        .capture-btn:active {
+            transform: scale(0.94);
+        }
+
+        /* ================= SWITCH CAMERA ================= */
+
+        .switch-camera {
+            position: absolute;
+
+            right: 12px;
+            bottom: 12px;
+
+            width: 42px;
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.55
+                );
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+        /* ================= RESULT PHOTO ================= */
+
+        .photo-result {
+            display: none;
+
+            margin-top: 20px;
+        }
+
+        .photo-result.show {
+            display: block;
+        }
+
+        .photo-result img {
+            width: 100%;
+
+            max-height: 350px;
+
+            object-fit: cover;
+
+            border-radius: 15px;
+
+            display: block;
+        }
+
+        .retake-btn {
+            width: 100%;
+
+            height: 47px;
+
+            margin-top: 12px;
+
+            border:
+                1px solid
+                #198754;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #198754;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        /* ================= ANALYZE ================= */
+
+        .analyze-btn {
+
+            width: 100%;
+
+            height: 52px;
+
+            margin-top: 12px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background: #198754;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        /* ================= LOADING ================= */
+
+        .loading {
+            display: none;
+
+            text-align: center;
+
+            padding: 25px 10px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+
+            width: 45px;
+            height: 45px;
+
+            border:
+                4px solid
+                #dcefe4;
+
+            border-top-color:
+                #198754;
+
+            border-radius: 50%;
+
+            animation:
+                spin 0.8s linear infinite;
+
+            margin:
+                0 auto 12px;
+        }
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+        .loading strong {
+            display: block;
+
+            color: #198754;
+
+            margin-bottom: 5px;
+        }
+
+        .loading p {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* ================= AI RESULT ================= */
+
+        .result {
+            display: none;
+
+            margin-top: 20px;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result-header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #198754,
+                    #20a464
+                );
+
+            color: white;
+
+            padding: 18px;
+
+            border-radius:
+                16px 16px 0 0;
+        }
+
+        .result-header span {
+            font-size: 11px;
+            opacity: 0.85;
+        }
+
+        .result-header h3 {
+            font-size: 19px;
+            margin-top: 4px;
+        }
+
+        .result-body {
+
+            padding: 17px;
+
+            border:
+                1px solid
+                #e0e8e3;
+
+            border-top: none;
+
+            border-radius:
+                0 0 16px 16px;
+        }
+
+        .result-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid
+                #edf0ee;
+
+            gap: 15px;
+        }
+
+        .result-row span {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .result-row strong {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .status {
+
+            display: inline-block;
+
+            padding:
+                6px
+                11px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .status-waspada {
+
+            background: #fff4d6;
+
+            color: #a87400;
+        }
+
+        .suggestion {
+
+            margin-top: 15px;
+
+            padding: 15px;
+
+            background: #f5fbf7;
+
+            border-radius: 13px;
+        }
+
+        .suggestion strong {
+
+            display: block;
+
+            color: #198754;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+        }
+
+        .suggestion p {
+
+            color: #555;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .warning {
+
+            margin-top: 13px;
+
+            padding: 13px;
+
+            background: #fff8e8;
+
+            border:
+                1px solid
+                #f2dfae;
+
+            border-radius: 12px;
+
+            color: #766326;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        .again-btn {
+
+            width: 100%;
+
+            height: 45px;
+
+            margin-top: 15px;
+
+            border:
+                1px solid
+                #198754;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #198754;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+
+            text-align: center;
+
+            color: #999;
+
+            font-size: 12px;
+
+            margin-top: 20px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 480px) {
+
+            .camera-card {
+                padding: 15px;
+            }
+
+            .camera-container {
+                aspect-ratio: 3 / 4;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-top">
+
+        <button
+            type="button"
+            class="back-btn"
+            onclick="kembaliDashboard()"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+
+        <div class="header-text">
+
+            <span>SawitKu</span>
+
+            <h1>
+                Cek Hama AI
+            </h1>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- INFO AI -->
+
+    <div class="ai-card">
+
+        <div class="ai-icon">
+
+            <i class="fa-solid fa-robot"></i>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Deteksi Hama dengan AI
+            </strong>
+
+            <p>
+                Arahkan kamera ke daun atau bagian
+                tanaman sawit yang ingin diperiksa.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CAMERA -->
+
+    <div class="camera-card">
+
+
+        <div class="camera-title">
+
+            <h2>
+                Kamera Tanaman
+            </h2>
+
+            <p>
+                Pastikan objek terlihat jelas
+                sebelum mengambil foto.
+            </p>
+
+        </div>
+
+
+        <!-- CAMERA CONTAINER -->
+
+        <div class="camera-container">
+
+
+            <video
+                id="camera"
+                autoplay
+                playsinline
+            ></video>
+
+
+            <div class="camera-frame"></div>
+
+
+            <div class="camera-text">
+
+                Arahkan kamera ke daun sawit
+
+            </div>
+
+
+            <button
+                type="button"
+                class="switch-camera"
+                onclick="gantiKamera()"
+            >
+
+                <i class="fa-solid fa-camera-rotate"></i>
+
+            </button>
+
+
+        </div>
+
+
+        <!-- CAMERA CONTROLS -->
+
+        <div class="camera-controls">
+
+            <button
+                type="button"
+                class="capture-btn"
+                onclick="ambilFoto()"
+            >
+
+                <i class="fa-solid fa-camera"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- CANVAS -->
+
+        <canvas
+            id="canvas"
+            style="display:none;"
+        ></canvas>
+
+
+
+        <!-- PHOTO RESULT -->
+
+        <div
+            id="photoResult"
+            class="photo-result"
+        >
+
+            <img
+                id="capturedImage"
+                alt="Foto tanaman"
+            >
+
+
+            <button
+                type="button"
+                class="retake-btn"
+                onclick="fotoUlang()"
+            >
+
+                <i class="fa-solid fa-camera"></i>
+
+                Ambil Foto Ulang
+
+            </button>
+
+
+            <button
+                type="button"
+                class="analyze-btn"
+                onclick="analisisAI()"
+            >
+
+                <i class="fa-solid fa-robot"></i>
+
+                Analisis dengan AI
+
+            </button>
+
+        </div>
+
+
+
+        <!-- LOADING -->
+
+        <div
+            id="loading"
+            class="loading"
+        >
+
+            <div class="spinner"></div>
+
+            <strong>
+                AI sedang menganalisis...
+            </strong>
+
+            <p>
+                Mohon tunggu beberapa saat.
+            </p>
+
+        </div>
+
+
+
+        <!-- RESULT -->
+
+        <div
+            id="result"
+            class="result"
+        >
+
+            <div class="result-header">
+
+                <span>
+                    HASIL ANALISIS AI
+                </span>
+
+                <h3>
+                    Indikasi Serangan Hama
+                </h3>
+
+            </div>
+
+
+            <div class="result-body">
+
+
+                <div class="result-row">
+
+                    <span>
+                        Kemungkinan Hama
+                    </span>
+
+                    <strong>
+                        Ulat Pemakan Daun
+                    </strong>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span>
+                        Tingkat Keyakinan
+                    </span>
+
+                    <strong>
+                        92%
+                    </strong>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong>
+
+                        <span class="status status-waspada">
+                            Waspada
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+                <div class="suggestion">
+
+                    <strong>
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                        Saran Penanganan
+
+                    </strong>
+
+
+                    <p>
+
+                        Periksa bagian bawah daun dan
+                        area tanaman yang menunjukkan
+                        kerusakan. Lakukan pemantauan
+                        secara berkala. Jika serangan
+                        semakin luas, konsultasikan
+                        dengan petugas pertanian atau
+                        ahli tanaman untuk mendapatkan
+                        penanganan yang sesuai.
+
+                    </p>
+
+                </div>
+
+
+                <div class="warning">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    Hasil AI merupakan deteksi awal.
+                    Pastikan melakukan pemeriksaan
+                    langsung pada tanaman untuk
+                    memastikan kondisi sebenarnya.
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="again-btn"
+                    onclick="fotoUlang()"
+                >
+
+                    <i class="fa-solid fa-camera"></i>
+
+                    Periksa Tanaman Lain
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer">
+
+        SawitKu © 2026
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+
+/* =====================================================
+   VARIABEL KAMERA
+===================================================== */
+
+let stream = null;
+
+let facingMode = "environment";
+
+
+
+/* =====================================================
+   AKTIFKAN KAMERA
+===================================================== */
+
+async function bukaKamera() {
+
+    try {
+
+        /*
+            Meminta akses kamera belakang.
+        */
+
+        stream =
+            await navigator.mediaDevices
+                .getUserMedia({
+
+                    video: {
+
+                        facingMode:
+                            facingMode,
+
+                        width: {
+                            ideal: 1280
+                        },
+
+                        height: {
+                            ideal: 720
+                        }
+
+                    },
+
+                    audio: false
+
+                });
+
+
+        const video =
+            document.getElementById(
+                "camera"
+            );
+
+
+        video.srcObject =
+            stream;
+
+
+    } catch (error) {
+
+        console.error(
+            "Kamera gagal dibuka:",
+            error
+        );
+
+
+        alert(
+            "Kamera tidak dapat digunakan. Silakan izinkan akses kamera pada browser."
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   GANTI KAMERA DEPAN / BELAKANG
+===================================================== */
+
+async function gantiKamera() {
+
+    if (stream) {
+
+        stream
+            .getTracks()
+            .forEach(
+                track =>
+                    track.stop()
+            );
+
+    }
+
+
+    if (
+        facingMode ===
+        "environment"
+    ) {
+
+        facingMode = "user";
+
+    } else {
+
+        facingMode =
+            "environment";
+
+    }
+
+
+    await bukaKamera();
+
+}
+
+
+
+/* =====================================================
+   AMBIL FOTO
+===================================================== */
+
+function ambilFoto() {
+
+    const video =
+        document.getElementById(
+            "camera"
+        );
+
+
+    const canvas =
+        document.getElementById(
+            "canvas"
+        );
+
+
+    const image =
+        document.getElementById(
+            "capturedImage"
+        );
+
+
+    /*
+        Sesuaikan ukuran canvas
+        dengan video.
+    */
+
+    canvas.width =
+        video.videoWidth;
+
+    canvas.height =
+        video.videoHeight;
+
+
+    const context =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    context.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /*
+        Ambil hasil foto.
+    */
+
+    image.src =
+        canvas.toDataURL(
+            "image/jpeg",
+            0.9
+        );
+
+
+    /*
+        Tampilkan foto.
+    */
+
+    document
+        .getElementById(
+            "photoResult"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    /*
+        Sembunyikan kamera.
+    */
+
+    document
+        .querySelector(
+            ".camera-container"
+        )
+        .style.display =
+            "none";
+
+
+    document
+        .querySelector(
+            ".camera-controls"
+        )
+        .style.display =
+            "none";
+
+}
+
+
+
+/* =====================================================
+   FOTO ULANG
+===================================================== */
+
+function fotoUlang() {
+
+    document
+        .getElementById(
+            "photoResult"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "result"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "loading"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .querySelector(
+            ".camera-container"
+        )
+        .style.display =
+            "block";
+
+
+    document
+        .querySelector(
+            ".camera-controls"
+        )
+        .style.display =
+            "flex";
+
+}
+
+
+
+/* =====================================================
+   ANALISIS AI
+===================================================== */
+
+function analisisAI() {
+
+
+    document
+        .getElementById(
+            "loading"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "result"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    /*
+        SIMULASI AI
+
+        Nantinya bagian ini dapat
+        diganti dengan API/model AI
+        sungguhan.
+    */
+
+    setTimeout(
+        function () {
+
+
+            document
+                .getElementById(
+                    "loading"
+                )
+                .classList.remove(
+                    "show"
+                );
+
+
+            document
+                .getElementById(
+                    "result"
+                )
+                .classList.add(
+                    "show"
+                );
+
+
+        },
+        2500
+    );
+
+}
+
+
+
+/* =====================================================
+   KEMBALI DASHBOARD
+===================================================== */
+
+function kembaliDashboard() {
+
+    hentikanKamera();
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+
+/* =====================================================
+   HENTIKAN KAMERA
+===================================================== */
+
+function hentikanKamera() {
+
+    if (stream) {
+
+        stream
+            .getTracks()
+            .forEach(
+                track =>
+                    track.stop()
+            );
+
+        stream = null;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SAAT HALAMAN DIBUKA
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function () {
+
+        /*
+            Langsung meminta izin kamera
+            ketika halaman Cek Hama dibuka.
+        */
+
+        bukaKamera();
+
+    }
+);
+
+
+
+/* =====================================================
+   SAAT MENINGGALKAN HALAMAN
+===================================================== */
+
+window.addEventListener(
+    "beforeunload",
+    function () {
+
+        hentikanKamera();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
+```

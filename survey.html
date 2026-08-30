@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SawitKu - Survey Harga</title>
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="survey.css"
+    >
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="header">
+
+        <div class="header-left">
+
+            <button
+                type="button"
+                class="back-btn"
+                onclick="window.location.href='index.html'"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div>
+
+                <span>
+                    SawitKu
+                </span>
+
+                <h2>
+                    Survey Harga
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-icon">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         INFO
+    ================================================== -->
+
+    <section class="info-box">
+
+        <div class="info-icon">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Survey Harga TBS
+            </strong>
+
+            <p>
+                Bandingkan harga TBS dari berbagai
+                pembeli atau pabrik di sekitar Anda.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         STATISTIK
+    ================================================== -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+                <i class="fa-solid fa-money-bill-wave"></i>
+            </div>
+
+            <span>
+                Harga Tertinggi
+            </span>
+
+            <strong id="hargaTertinggi">
+                Rp 3.500
+            </strong>
+
+            <small>
+                / Kg
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+            <span>
+                Harga Terendah
+            </span>
+
+            <strong id="hargaTerendah">
+                Rp 3.200
+            </strong>
+
+            <small>
+                / Kg
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-chart-simple"></i>
+            </div>
+
+            <span>
+                Rata-rata
+            </span>
+
+            <strong id="hargaRata">
+                Rp 3.350
+            </strong>
+
+            <small>
+                / Kg
+            </small>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         TAMBAH SURVEY
+    ================================================== -->
+
+    <button
+        type="button"
+        class="add-button"
+        onclick="openForm()"
+    >
+
+        <i class="fa-solid fa-plus"></i>
+
+        Tambah Survey Harga
+
+    </button>
+
+
+
+    <!-- =================================================
+         SEARCH
+    ================================================== -->
+
+    <section class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari nama pembeli atau lokasi..."
+            onkeyup="searchSurvey()"
+        >
+
+    </section>
+
+
+
+    <!-- =================================================
+         JUDUL
+    ================================================== -->
+
+    <div class="section-title">
+
+        <div>
+
+            <h3>
+                Hasil Survey
+            </h3>
+
+            <span id="jumlahData">
+                4 data ditemukan
+            </span>
+
+        </div>
+
+        <button
+            type="button"
+            onclick="resetData()"
+            title="Reset data"
+        >
+
+            <i class="fa-solid fa-rotate"></i>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         DAFTAR SURVEY
+    ================================================== -->
+
+    <div
+        class="survey-list"
+        id="surveyList"
+    >
+
+
+        <!-- DATA 1 -->
+
+        <div
+            class="survey-card"
+            data-name="PT Sawit Makmur"
+            data-location="Palangkaraya"
+        >
+
+            <div class="company-icon green">
+                <i class="fa-solid fa-industry"></i>
+            </div>
+
+            <div class="survey-info">
+
+                <strong>
+                    PT Sawit Makmur
+                </strong>
+
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Palangkaraya
+                </span>
+
+                <small>
+                    Hari ini, 09:30
+                </small>
+
+            </div>
+
+            <div class="survey-price">
+
+                <strong>
+                    Rp 3.500
+                </strong>
+
+                <span>
+                    / Kg
+                </span>
+
+                <b class="up">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    Tinggi
+                </b>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DATA 2 -->
+
+        <div
+            class="survey-card"
+            data-name="CV Tani Sejahtera"
+            data-location="Katingan"
+        >
+
+            <div class="company-icon blue">
+                <i class="fa-solid fa-store"></i>
+            </div>
+
+            <div class="survey-info">
+
+                <strong>
+                    CV Tani Sejahtera
+                </strong>
+
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Katingan
+                </span>
+
+                <small>
+                    Hari ini, 08:45
+                </small>
+
+            </div>
+
+            <div class="survey-price">
+
+                <strong>
+                    Rp 3.400
+                </strong>
+
+                <span>
+                    / Kg
+                </span>
+
+                <b class="normal">
+                    <i class="fa-solid fa-minus"></i>
+                    Normal
+                </b>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DATA 3 -->
+
+        <div
+            class="survey-card"
+            data-name="UD Berkah Sawit"
+            data-location="Pulang Pisau"
+        >
+
+            <div class="company-icon orange">
+                <i class="fa-solid fa-warehouse"></i>
+            </div>
+
+            <div class="survey-info">
+
+                <strong>
+                    UD Berkah Sawit
+                </strong>
+
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Pulang Pisau
+                </span>
+
+                <small>
+                    Kemarin, 15:20
+                </small>
+
+            </div>
+
+            <div class="survey-price">
+
+                <strong>
+                    Rp 3.300
+                </strong>
+
+                <span>
+                    / Kg
+                </span>
+
+                <b class="normal">
+                    <i class="fa-solid fa-minus"></i>
+                    Normal
+                </b>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DATA 4 -->
+
+        <div
+            class="survey-card"
+            data-name="Koperasi Tani Bersama"
+            data-location="Kapuas"
+        >
+
+            <div class="company-icon purple">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div class="survey-info">
+
+                <strong>
+                    Koperasi Tani Bersama
+                </strong>
+
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Kapuas
+                </span>
+
+                <small>
+                    Kemarin, 13:10
+                </small>
+
+            </div>
+
+            <div class="survey-price">
+
+                <strong>
+                    Rp 3.200
+                </strong>
+
+                <span>
+                    / Kg
+                </span>
+
+                <b class="down">
+                    <i class="fa-solid fa-arrow-down"></i>
+                    Rendah
+                </b>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         BOTTOM NAV
+    ================================================== -->
+
+    <nav class="bottom-nav">
+
+        <div
+            class="nav-item"
+            onclick="window.location.href='index.html'"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Beranda
+            </span>
+
+        </div>
+
+
+        <div
+            class="nav-item active"
+        >
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>
+                Survey
+            </span>
+
+        </div>
+
+
+        <div
+            class="nav-item"
+            onclick="window.location.href='toko.html'"
+        >
+
+            <i class="fa-solid fa-store"></i>
+
+            <span>
+                Toko
+            </span>
+
+        </div>
+
+
+        <div
+            class="nav-item"
+            onclick="window.location.href='index.html'"
+        >
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>
+                Profil
+            </span>
+
+        </div>
+
+    </nav>
+
+
+</div>
+
+
+
+<!-- =================================================
+     MODAL TAMBAH SURVEY
+===================================================== -->
+
+<div
+    class="modal"
+    id="formModal"
+>
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span>
+                    Survey Harga
+                </span>
+
+                <h3>
+                    Tambah Data Survey
+                </h3>
+
+            </div>
+
+            <button
+                type="button"
+                onclick="closeForm()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+            id="surveyForm"
+            onsubmit="addSurvey(event)"
+        >
+
+
+            <label>
+                Nama Pembeli / Pabrik
+            </label>
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-building"></i>
+
+                <input
+                    type="text"
+                    id="namaPembeli"
+                    placeholder="Contoh: PT Sawit Makmur"
+                    required
+                >
+
+            </div>
+
+
+            <label>
+                Lokasi
+            </label>
+
+            <div class="input-group">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <input
+                    type="text"
+                    id="lokasi"
+                    placeholder="Contoh: Palangkaraya"
+                    required
+                >
+
+            </div>
+
+
+            <label>
+                Harga TBS per Kg
+            </label>
+
+            <div class="input-group">
+
+                <span class="rupiah">
+                    Rp
+                </span>
+
+                <input
+                    type="number"
+                    id="hargaInput"
+                    placeholder="3500"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+
+            <label>
+                Keterangan
+            </label>
+
+            <div class="input-group textarea">
+
+                <i class="fa-solid fa-note-sticky"></i>
+
+                <textarea
+                    id="keterangan"
+                    placeholder="Tambahkan keterangan..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="save-button"
+            >
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Simpan Survey
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="survey.js"></script>
+
+
+</body>
+</html>
