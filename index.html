@@ -1,101 +1,487 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Sawit</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>SawitKu - Dashboard</title>
+
+    <!-- CSS UTAMA -->
+    <link rel="stylesheet" href="style.css?v=999">
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 </head>
+
 <body>
 
-<div class="container">
+<div class="app">
 
-    <!-- Header -->
-    <h2>Halo, Darwani</h2>
+    <!-- ================= HEADER ================= -->
 
-    <!-- Card Harga -->
-    <div class="card">
-        <p>Kota Palangkaraya</p>
-        <h1 id="harga">Rp 3.500.00</h1>
+    <header class="header">
+
+        <div class="user-info">
+
+            <div class="avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div>
+                <span class="greeting">
+                    Selamat datang 👋
+                </span>
+
+                <h2>Darwani</h2>
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="notification-btn"
+            onclick="showNotification('Belum ada notifikasi baru')"
+        >
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-dot"></span>
+        </button>
+
+    </header>
+
+
+    <!-- ================= HARGA SAWIT ================= -->
+
+    <section class="price-card">
+
+        <div class="price-top">
+
+            <div>
+                <span class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Kota Palangkaraya
+                </span>
+
+                <p class="price-label">
+                    Harga TBS Hari Ini
+                </p>
+            </div>
+
+            <div class="price-status">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                Naik
+            </div>
+
+        </div>
+
+        <div class="price">
+
+            <span>Rp</span>
+
+            <strong id="harga">
+                3.500
+            </strong>
+
+            <small>/ Kg</small>
+
+        </div>
+
+        <div class="price-change">
+
+            <span>
+                <i class="fa-solid fa-arrow-up"></i>
+                Rp 100
+            </span>
+
+            <p>
+                dibanding kemarin
+            </p>
+
+        </div>
+
+        <div class="price-footer">
+
+            <span>
+                Diperbarui hari ini
+            </span>
+
+            <button
+                type="button"
+                onclick="showHistory()"
+            >
+                Riwayat Harga
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= KEBUN ================= -->
+
+    <section class="farm-card">
+
+        <div class="farm-icon">
+            <i class="fa-solid fa-tree"></i>
+        </div>
+
+        <div class="farm-info">
+
+            <span>Kebun Saya</span>
+
+            <strong>
+                Belum ada kebun
+            </strong>
+
+            <small>
+                Tambahkan kebun untuk melihat
+                perkiraan hasil panen
+            </small>
+
+        </div>
+
+        <button
+            type="button"
+            class="add-farm"
+            onclick="addFarm()"
+        >
+            <i class="fa-solid fa-plus"></i>
+        </button>
+
+    </section>
+
+
+    <!-- ================= JUDUL FITUR ================= -->
+
+    <div class="section-header">
+
+        <h3>Fitur Utama</h3>
+
+        <span>Pilih fitur</span>
+
     </div>
 
-    <!-- Tombol -->
-    <button class="btn">+ Tambah Kebun</button>
 
-    <!-- Menu -->
+    <!-- ================= MENU ================= -->
+
     <div class="menu">
 
-        <div class="item" onclick="window.location.href='toko.html'">
-    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png">
-    <p>Toko Sawit</p>
-</div>
+        <!-- TOKO -->
+        <div
+            class="item"
+            onclick="window.location.href='toko.html'"
+        >
+            <div class="menu-icon green">
+                <i class="fa-solid fa-store"></i>
+            </div>
 
-        <div class="item">
-            <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png">
+            <p>Toko Sawit</p>
+        </div>
+
+
+        <!-- SURVEY -->
+        <div
+            class="item"
+            onclick="showFeature('Survey Harga')"
+        >
+            <div class="menu-icon blue">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
             <p>Survey Harga</p>
         </div>
 
-        <div class="item">
-            <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png">
+
+        <!-- KALKULATOR -->
+        <div
+            class="item"
+            onclick="showFeature('Kalkulator')"
+        >
+            <div class="menu-icon orange">
+                <i class="fa-solid fa-calculator"></i>
+            </div>
+
             <p>Kalkulator</p>
         </div>
 
-        <div class="item">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828506.png">
+
+        <!-- BAGIKAN -->
+        <div
+            class="item"
+            onclick="sharePrice()"
+        >
+            <div class="menu-icon purple">
+                <i class="fa-solid fa-share-nodes"></i>
+            </div>
+
             <p>Bagikan Harga</p>
         </div>
 
-        <div class="item">
-            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png">
+
+        <!-- TANYA -->
+        <div
+            class="item"
+            onclick="showFeature('Tanya')"
+        >
+            <div class="menu-icon cyan">
+                <i class="fa-solid fa-comments"></i>
+            </div>
+
             <p>Tanya</p>
         </div>
 
-        <div class="item">
-            <img src="https://cdn-icons-png.flaticon.com/512/616/616554.png">
+
+        <!-- HAMA -->
+        <div
+            class="item"
+            onclick="showFeature('Cek Hama')"
+        >
+            <div class="menu-icon red">
+                <i class="fa-solid fa-bug"></i>
+            </div>
+
             <p>Cek Hama</p>
         </div>
 
-        <!-- 🔥 LIHAT SEMUA -->
-        <div class="item" onclick="openModal()">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png">
+
+        <!-- LIHAT SEMUA -->
+        <div
+            class="item"
+            onclick="openModal()"
+        >
+            <div class="menu-icon dark">
+                <i class="fa-solid fa-grip"></i>
+            </div>
+
             <p>Lihat Semua</p>
         </div>
 
     </div>
 
+
+    <!-- ================= INFO ================= -->
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            🌴
+        </div>
+
+        <div>
+
+            <strong>
+                Tips Petani Hari Ini
+            </strong>
+
+            <p>
+                Periksa kondisi tanaman secara rutin
+                agar hasil panen tetap optimal.
+            </p>
+
+        </div>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </div>
+
+
+    <!-- ================= BOTTOM NAV ================= -->
+
+    <nav class="bottom-nav">
+
+        <div
+            class="nav-item active"
+            onclick="window.location.href='index.html'"
+        >
+            <i class="fa-solid fa-house"></i>
+            <span>Beranda</span>
+        </div>
+
+
+        <div
+            class="nav-item"
+            onclick="window.location.href='toko.html'"
+        >
+            <i class="fa-solid fa-store"></i>
+            <span>Toko</span>
+        </div>
+
+
+        <div
+            class="nav-item"
+            onclick="showFeature('Kebun')"
+        >
+            <i class="fa-solid fa-tree"></i>
+            <span>Kebun</span>
+        </div>
+
+
+        <div
+            class="nav-item"
+            onclick="showFeature('Profil')"
+        >
+            <i class="fa-solid fa-user"></i>
+            <span>Profil</span>
+        </div>
+
+    </nav>
+
 </div>
 
-<!-- 🔥 MODAL BOTTOM SHEET -->
-<div id="modal" class="modal">
+
+<!-- ================= MODAL ================= -->
+
+<div
+    id="modal"
+    class="modal"
+>
+
     <div class="modal-content">
 
         <div class="modal-header">
-            <span>Semua Kategori</span>
-            <button onclick="closeModal()">✕</button>
+
+            <div>
+
+                <span>Semua Fitur</span>
+
+                <h3>
+                    Tingkatkan Produktivitas
+                </h3>
+
+            </div>
+
+            <button
+                type="button"
+                onclick="closeModal()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
         </div>
 
-        <h3>Tingkatkan Produktivitas & Pendapatan</h3>
 
-        <div class="menu">
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png"><p>Toko Sawit</p></div>
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png"><p>Survey Harga</p></div>
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/992/992651.png"><p>Kalkulator</p></div>
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828506.png"><p>Bagikan Harga</p></div>
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"><p>Tanya</p></div>
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/616/616554.png"><p>Cek Hama</p></div>
-        </div>
+        <div class="all-menu">
 
-        <h3>Hiburan untuk Anda Gratis</h3>
+            <div
+                class="all-item"
+                onclick="window.location.href='toko.html'"
+            >
+                <div class="menu-icon green">
+                    <i class="fa-solid fa-store"></i>
+                </div>
 
-        <div class="menu">
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"><p>Kuis Sawit</p></div>
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png"><p>Teka Teki</p></div>
-            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"><p>Sticker WA</p></div>
+                <span>Toko Sawit</span>
+            </div>
+
+
+            <div
+                class="all-item"
+                onclick="showFeature('Survey Harga')"
+            >
+                <div class="menu-icon blue">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <span>Survey Harga</span>
+            </div>
+
+
+            <div
+                class="all-item"
+                onclick="showFeature('Kalkulator')"
+            >
+                <div class="menu-icon orange">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+
+                <span>Kalkulator</span>
+            </div>
+
+
+            <div
+                class="all-item"
+                onclick="sharePrice()"
+            >
+                <div class="menu-icon purple">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
+
+                <span>Bagikan Harga</span>
+            </div>
+
+
+            <div
+                class="all-item"
+                onclick="showFeature('Tanya')"
+            >
+                <div class="menu-icon cyan">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+
+                <span>Tanya</span>
+            </div>
+
+
+            <div
+                class="all-item"
+                onclick="showFeature('Cek Hama')"
+            >
+                <div class="menu-icon red">
+                    <i class="fa-solid fa-bug"></i>
+                </div>
+
+                <span>Cek Hama</span>
+            </div>
+
+
+            <div
+                class="all-item"
+                onclick="showFeature('Kuis Sawit')"
+            >
+                <div class="menu-icon yellow">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+
+                <span>Kuis Sawit</span>
+            </div>
+
+
+            <div
+                class="all-item"
+                onclick="showFeature('Teka Teki')"
+            >
+                <div class="menu-icon pink">
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                </div>
+
+                <span>Teka Teki</span>
+            </div>
+
         </div>
 
     </div>
+
 </div>
 
-<script src="script.js"></script>
+
+<!-- ================= NOTIFICATION ================= -->
+
+<div
+    id="notification"
+    class="notification"
+></div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="script.js?v=999"></script>
+
 </body>
 </html>
+```

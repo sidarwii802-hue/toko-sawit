@@ -1,29 +1,145 @@
-// Data harga
-let harga = 3600.00;
+```javascript
+/* =====================================================
+   MODAL
+===================================================== */
 
-// Format rupiah
-function formatRupiah(angka) {
-    return "Rp " + angka.toLocaleString("id-ID");
-}
-
-// Tampilkan harga
-document.getElementById("harga").innerText = formatRupiah(harga);
-
-// Event tombol tambah kebun
-document.querySelector(".btn").addEventListener("click", function() {
-    alert("Fitur Tambah Kebun diklik!");
-});
-
-// Event klik menu
-document.querySelectorAll(".item").forEach(item => {
-    item.addEventListener("click", () => {
-        alert(item.innerText + " diklik!");
-    });
-});
 function openModal() {
-    document.getElementById("modal").style.display = "block";
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
 }
+
 
 function closeModal() {
-    document.getElementById("modal").style.display = "none";
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
 }
+
+
+/* =====================================================
+   NOTIFICATION
+===================================================== */
+
+function showNotification(message) {
+
+    const notification =
+        document.getElementById("notification");
+
+    notification.innerText = message;
+
+    notification.classList.add("show");
+
+
+    setTimeout(function () {
+
+        notification.classList.remove("show");
+
+    }, 2500);
+
+}
+
+
+/* =====================================================
+   TAMBAH KEBUN
+===================================================== */
+
+function addFarm() {
+
+    showNotification(
+        "Fitur tambah kebun akan segera dibuka"
+    );
+
+}
+
+
+/* =====================================================
+   FITUR
+===================================================== */
+
+function showFeature(name) {
+
+    closeModal();
+
+    showNotification(
+        "Fitur " + name + " sedang dipersiapkan"
+    );
+
+}
+
+
+/* =====================================================
+   RIWAYAT HARGA
+===================================================== */
+
+function showHistory() {
+
+    showNotification(
+        "Menampilkan riwayat harga sawit"
+    );
+
+}
+
+
+/* =====================================================
+   BAGIKAN HARGA
+===================================================== */
+
+function sharePrice() {
+
+    const text =
+        "Harga TBS Sawit Kota Palangkaraya hari ini Rp 3.500/Kg.";
+
+    if (
+        navigator.share
+    ) {
+
+        navigator.share({
+
+            title:
+                "Harga Sawit Hari Ini",
+
+            text:
+                text
+
+        });
+
+    } else {
+
+        navigator.clipboard
+            .writeText(text);
+
+        showNotification(
+            "Harga berhasil disalin"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   KLIK DI LUAR MODAL
+===================================================== */
+
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+```

@@ -1,118 +1,1146 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef3ef;
+    color: #1f2937;
+    min-height: 100vh;
 }
 
-.container {
-    padding: 16px;
-}
-
-/* Header */
-h2 {
-    margin-bottom: 10px;
-}
-
-/* Card Harga */
-.card {
-    background: #e8f5e9;
-    padding: 16px;
-    border-radius: 12px;
-}
-
-.card p {
-    margin: 0;
-}
-
-.card h1 {
-    margin-top: 5px;
-    color: #2e7d32;
-}
-
-/* Tombol */
-.btn {
+.app {
     width: 100%;
-    padding: 12px;
-    background: #2e7d32;
+    max-width: 1100px;
+    min-height: 100vh;
+
+    margin: auto;
+
+    background: #f8faf9;
+
+    padding-bottom: 110px;
+
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 28px 40px 55px;
+
+    background: linear-gradient(
+        135deg,
+        #168447,
+        #21a65b
+    );
+
     color: white;
+
+    border-radius:
+        0 0 32px 32px;
+
+    overflow: hidden;
+}
+
+
+/* Dekorasi */
+
+.header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    right: -100px;
+    top: -130px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+.header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: 45%;
+    bottom: -140px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.05);
+}
+
+
+/* USER */
+
+.user-info {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.avatar {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background:
+        rgba(255,255,255,0.18);
+
+    font-size: 23px;
+}
+
+.greeting {
+    display: block;
+
+    font-size: 13px;
+
+    opacity: .85;
+}
+
+.header h2 {
+    margin-top: 4px;
+
+    font-size: 24px;
+}
+
+
+/* NOTIFICATION */
+
+.notification-btn {
+    position: relative;
+    z-index: 3;
+
+    width: 46px;
+    height: 46px;
+
     border: none;
-    border-radius: 12px;
-    margin-top: 10px;
-    font-size: 16px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,0.17);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: .2s;
 }
 
-/* Menu Grid */
-.menu {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 20px;
+.notification-btn:hover {
+    background:
+        rgba(255,255,255,0.28);
 }
 
-/* Item menu */
-.item {
-    background: white;
-    padding: 12px;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: 0.2s;
-}
+.notification-dot {
+    position: absolute;
 
-/* Efek klik */
-.item:hover {
-    transform: scale(1.05);
-}
+    top: 7px;
+    right: 8px;
 
-/* Icon (DIPERBAIKI) */
-.item img {
-    width: 55px;
-    height: 55px;
-    object-fit: contain;
-    margin-bottom: 8px;
+    width: 9px;
+    height: 9px;
 
-    /* Tambahan biar mirip aplikasi */
-    background: #f1f1f1;
-    padding: 10px;
+    background: #ff4d4d;
+
+    border: 2px solid white;
+
     border-radius: 50%;
 }
 
-/* Text */
-.item p {
-    margin: 0;
+
+/* =====================================================
+   PRICE CARD
+===================================================== */
+
+.price-card {
+    position: relative;
+    z-index: 5;
+
+    margin: -22px 40px 0;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.08);
+}
+
+.price-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+}
+
+.location {
+    color: #168447;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.location i {
+    margin-right: 5px;
+}
+
+.price-label {
+    margin-top: 8px;
+
+    color: #888;
+
     font-size: 13px;
 }
-.modal {
-    display: none;
+
+.price-status {
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: #e7f7ed;
+
+    color: #168447;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.price-status i {
+    margin-right: 4px;
+}
+
+.price {
+    display: flex;
+
+    align-items: baseline;
+
+    margin-top: 17px;
+
+    color: #168447;
+}
+
+.price span {
+    margin-right: 6px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+.price strong {
+    font-size: 44px;
+
+    letter-spacing: -1px;
+}
+
+.price small {
+    margin-left: 6px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.price-change {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 5px;
+}
+
+.price-change span {
+    color: #168447;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.price-change p {
+    color: #999;
+
+    font-size: 11px;
+}
+
+.price-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 19px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid #eee;
+}
+
+.price-footer span {
+    color: #999;
+
+    font-size: 11px;
+}
+
+.price-footer button {
+    border: none;
+
+    background: transparent;
+
+    color: #168447;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   FARM
+===================================================== */
+
+.farm-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin: 22px 40px 0;
+
+    padding: 18px;
+
+    background: #eaf7ef;
+
+    border: 1px solid #d9f0e1;
+
+    border-radius: 20px;
+}
+
+.farm-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: white;
+
+    color: #168447;
+
+    font-size: 21px;
+}
+
+.farm-info {
+    flex: 1;
+}
+
+.farm-info span {
+    display: block;
+
+    color: #168447;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.farm-info strong {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 14px;
+}
+
+.farm-info small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #777;
+
+    font-size: 10px;
+
+    line-height: 15px;
+}
+
+.add-farm {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #168447;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.add-farm:hover {
+    background: #0e703a;
+
+    transform: scale(1.05);
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin: 32px 40px 18px;
+}
+
+.section-header h3 {
+    font-size: 19px;
+}
+
+.section-header span {
+    color: #999;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+
+    padding: 0 40px;
+}
+
+.item {
+    padding: 12px 5px;
+
+    text-align: center;
+
+    border-radius: 17px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.item:hover {
+    background: #eef7f1;
+
+    transform: translateY(-3px);
+}
+
+.item:active {
+    transform: scale(.94);
+}
+
+.item p {
+    margin-top: 9px;
+
+    color: #444;
+
+    font-size: 11px;
+
+    font-weight: 500;
+}
+
+
+/* =====================================================
+   ICON MENU
+===================================================== */
+
+.menu-icon {
+    width: 62px;
+    height: 62px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 18px;
+
+    font-size: 23px;
+
+    transition: .2s;
+}
+
+.item:hover .menu-icon {
+    transform: translateY(-3px);
+}
+
+
+/* COLORS */
+
+.green {
+    background: #e5f6eb;
+    color: #168447;
+}
+
+.blue {
+    background: #e7f0ff;
+    color: #3677d8;
+}
+
+.orange {
+    background: #fff0df;
+    color: #e88a22;
+}
+
+.purple {
+    background: #f0eaff;
+    color: #7651d6;
+}
+
+.cyan {
+    background: #e3f8fa;
+    color: #1b9eaa;
+}
+
+.red {
+    background: #ffe8e8;
+    color: #df4d4d;
+}
+
+.dark {
+    background: #e9ecef;
+    color: #555;
+}
+
+.yellow {
+    background: #fff5cf;
+    color: #d29a00;
+}
+
+.pink {
+    background: #ffe8f1;
+    color: #d34e82;
+}
+
+
+/* =====================================================
+   INFO CARD
+===================================================== */
+
+.info-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin: 32px 40px;
+
+    padding: 19px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    border: 1px solid #f0f0f0;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.05);
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #eaf7ef;
+
+    font-size: 24px;
+}
+
+.info-card div:nth-child(2) {
+    flex: 1;
+}
+
+.info-card strong {
+    font-size: 13px;
+}
+
+.info-card p {
+    margin-top: 5px;
+
+    color: #888;
+
+    font-size: 10px;
+
+    line-height: 15px;
+}
+
+.info-card > i {
+    color: #aaa;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+.bottom-nav {
     position: fixed;
-    left: 0;
+
+    left: 50%;
     bottom: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 100px;
+
     width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.3);
+
+    max-width: 1100px;
+
+    height: 74px;
+
+    transform: translateX(-50%);
+
+    background: rgba(255,255,255,.97);
+
+    border-top: 1px solid #eee;
+
+    box-shadow:
+        0 -5px 20px
+        rgba(0,0,0,.05);
+
+    backdrop-filter: blur(10px);
+}
+
+.nav-item {
+    min-width: 65px;
+
+    text-align: center;
+
+    color: #aaa;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.nav-item i {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 20px;
+}
+
+.nav-item span {
+    font-size: 10px;
+}
+
+.nav-item.active {
+    color: #168447;
+}
+
+.nav-item:hover {
+    color: #168447;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: flex-end;
+
+    background:
+        rgba(0,0,0,.5);
+}
+
+.modal.show {
+    display: flex;
 }
 
 .modal-content {
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    background: white;
-    border-radius: 20px 20px 0 0;
-    padding: 16px;
-    max-height: 80%;
+
+    max-width: 700px;
+
+    max-height: 85vh;
+
+    margin: auto;
+
+    padding: 25px;
+
     overflow-y: auto;
+
+    background: white;
+
+    border-radius:
+        25px 25px 0 0;
+
+    animation:
+        slideUp .3s ease;
+}
+
+@keyframes slideUp {
+
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+
 }
 
 .modal-header {
     display: flex;
+
+    align-items: flex-start;
+
     justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    margin-bottom: 10px;
+
+    margin-bottom: 25px;
+}
+
+.modal-header span {
+    color: #168447;
+
+    font-size: 12px;
+}
+
+.modal-header h3 {
+    margin-top: 5px;
+
+    font-size: 19px;
 }
 
 .modal-header button {
-    background: none;
+    width: 38px;
+    height: 38px;
+
     border: none;
-    font-size: 18px;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   ALL MENU
+===================================================== */
+
+.all-menu {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px 15px;
+}
+
+.all-item {
+    padding: 8px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.all-item:hover {
+    background: #f5f8f6;
+}
+
+.all-item .menu-icon {
+    margin-bottom: 8px;
+}
+
+.all-item span {
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   NOTIFICATION
+===================================================== */
+
+.notification {
+    position: fixed;
+
+    left: 50%;
+    bottom: -70px;
+
+    z-index: 2000;
+
+    padding: 13px 22px;
+
+    transform: translateX(-50%);
+
+    background: #222;
+
+    color: white;
+
+    border-radius: 25px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    transition: .3s;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.2);
+}
+
+.notification.show {
+    bottom: 90px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .header {
+        padding:
+            24px 25px 45px;
+    }
+
+    .price-card {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .farm-card {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .section-header {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .menu {
+        padding-left: 25px;
+        padding-right: 25px;
+
+        gap: 20px 10px;
+    }
+
+    .info-card {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .bottom-nav {
+        gap: 50px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    body {
+        background: #f8faf9;
+    }
+
+    .app {
+        max-width: 480px;
+
+        box-shadow: none;
+    }
+
+    .header {
+        padding:
+            20px 20px 38px;
+
+        border-radius:
+            0 0 27px 27px;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .header h2 {
+        font-size: 20px;
+    }
+
+    .notification-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .price-card {
+        margin:
+            -15px 18px 0;
+
+        padding: 20px;
+
+        border-radius: 21px;
+    }
+
+    .price strong {
+        font-size: 36px;
+    }
+
+    .farm-card {
+        margin:
+            18px 20px 0;
+    }
+
+    .section-header {
+        margin:
+            25px 20px 15px;
+    }
+
+    .section-header h3 {
+        font-size: 17px;
+    }
+
+    .menu {
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        padding:
+            0 20px;
+
+        gap:
+            18px 6px;
+    }
+
+    .menu-icon {
+        width: 54px;
+        height: 54px;
+
+        border-radius: 16px;
+
+        font-size: 21px;
+    }
+
+    .item p {
+        font-size: 10px;
+    }
+
+    .info-card {
+        margin:
+            25px 20px;
+    }
+
+    .bottom-nav {
+        width: 100%;
+
+        max-width: 480px;
+
+        height: 68px;
+
+        gap: 0;
+
+        justify-content:
+            space-around;
+    }
+
+    .nav-item {
+        min-width: 55px;
+    }
+
+    .nav-item i {
+        font-size: 18px;
+    }
+
+    .nav-item span {
+        font-size: 9px;
+    }
+
+    .modal-content {
+        max-width: 480px;
+
+        padding: 20px;
+    }
+
+    .all-menu {
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap:
+            20px 7px;
+    }
+
+    .all-item span {
+        font-size: 10px;
+    }
+}
+
+
+/* =====================================================
+   HP KECIL
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .header {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .price-card {
+        margin-left: 14px;
+        margin-right: 14px;
+    }
+
+    .farm-card {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .section-header {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .menu {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .info-card {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .menu-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 19px;
+    }
+
+    .price strong {
+        font-size: 32px;
+    }
+
+    .price span {
+        font-size: 16px;
+    }
 }
