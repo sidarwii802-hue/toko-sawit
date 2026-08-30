@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Sawit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <h2>Halo, Darwani</h2>
+
+    <!-- Card Harga -->
+    <div class="card">
+        <p>Kota Palangkaraya</p>
+        <h1 id="harga">Rp 3.500.00</h1>
+    </div>
+
+    <!-- Tombol -->
+    <button class="btn">+ Tambah Kebun</button>
+
+    <!-- Menu -->
+    <div class="menu">
+
+        <div class="item" onclick="window.location.href='toko.html'">
+    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png">
+    <p>Toko Sawit</p>
+</div>
+
+        <div class="item">
+            <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png">
+            <p>Survey Harga</p>
+        </div>
+
+        <div class="item">
+            <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png">
+            <p>Kalkulator</p>
+        </div>
+
+        <div class="item">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828506.png">
+            <p>Bagikan Harga</p>
+        </div>
+
+        <div class="item">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png">
+            <p>Tanya</p>
+        </div>
+
+        <div class="item">
+            <img src="https://cdn-icons-png.flaticon.com/512/616/616554.png">
+            <p>Cek Hama</p>
+        </div>
+
+        <!-- 🔥 LIHAT SEMUA -->
+        <div class="item" onclick="openModal()">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png">
+            <p>Lihat Semua</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 🔥 MODAL BOTTOM SHEET -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <span>Semua Kategori</span>
+            <button onclick="closeModal()">✕</button>
+        </div>
+
+        <h3>Tingkatkan Produktivitas & Pendapatan</h3>
+
+        <div class="menu">
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png"><p>Toko Sawit</p></div>
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png"><p>Survey Harga</p></div>
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/992/992651.png"><p>Kalkulator</p></div>
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828506.png"><p>Bagikan Harga</p></div>
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"><p>Tanya</p></div>
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/616/616554.png"><p>Cek Hama</p></div>
+        </div>
+
+        <h3>Hiburan untuk Anda Gratis</h3>
+
+        <div class="menu">
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"><p>Kuis Sawit</p></div>
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png"><p>Teka Teki</p></div>
+            <div class="item"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"><p>Sticker WA</p></div>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

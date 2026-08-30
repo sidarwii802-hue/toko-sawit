@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Toko Sawit</title>
+
+    <link rel="stylesheet" href="toko.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+
+        <button class="back-btn" onclick="kembali()">
+            ←
+        </button>
+
+        <div class="header-title">
+            <h2>Toko Sawit</h2>
+            <p>Kebutuhan kebun sawit Anda</p>
+        </div>
+
+        <!-- KERANJANG -->
+        <div class="cart" onclick="openCart()">
+
+            🛒
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari pupuk, bibit, alat kebun..."
+            onkeyup="searchProduct()"
+        >
+
+        <span>
+            🔍
+        </span>
+
+    </div>
+
+
+    <!-- ================= BANNER ================= -->
+
+    <div class="banner">
+
+        <div class="banner-text">
+
+            <p>🌴 Promo Petani Sawit</p>
+
+            <h2>
+                Diskon hingga 30%
+            </h2>
+
+            <span>
+                Untuk kebutuhan kebun pilihan
+            </span>
+
+            <button onclick="showPromo()">
+                Lihat Promo
+            </button>
+
+        </div>
+
+        <div class="banner-icon">
+            🌴
+        </div>
+
+    </div>
+
+
+    <!-- ================= KATEGORI ================= -->
+
+    <div class="section-title">
+
+        <h3>
+            Kategori Produk
+        </h3>
+
+        <span onclick="showAll()">
+            Lihat Semua
+        </span>
+
+    </div>
+
+
+    <div class="categories">
+
+        <div
+            class="category"
+            onclick="filterProduct('Pupuk')"
+        >
+
+            <div class="category-icon">
+                🌱
+            </div>
+
+            <p>
+                Pupuk
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="filterProduct('Bibit')"
+        >
+
+            <div class="category-icon">
+                🌴
+            </div>
+
+            <p>
+                Bibit
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="filterProduct('Alat')"
+        >
+
+            <div class="category-icon">
+                🛠️
+            </div>
+
+            <p>
+                Alat Kebun
+            </p>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="filterProduct('Pestisida')"
+        >
+
+            <div class="category-icon">
+                🧴
+            </div>
+
+            <p>
+                Pestisida
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= PRODUK ================= -->
+
+    <div class="section-title">
+
+        <h3>
+            Produk Pilihan
+        </h3>
+
+        <span onclick="showAll()">
+            Semua
+        </span>
+
+    </div>
+
+
+    <div
+        class="products"
+        id="productList"
+    >
+
+
+        <!-- PRODUK 1 -->
+
+        <div
+            class="product-card"
+            data-name="Pupuk NPK Sawit"
+            data-category="Pupuk"
+        >
+
+            <div class="discount">
+                -15%
+            </div>
+
+            <div class="product-image">
+                🌱
+            </div>
+
+            <div class="product-info">
+
+                <span class="category-label">
+                    Pupuk
+                </span>
+
+                <h4>
+                    Pupuk NPK Sawit
+                </h4>
+
+                <div class="rating">
+                    ⭐ 4.9
+                    <small>
+                        • 120 terjual
+                    </small>
+                </div>
+
+                <p class="old-price">
+                    Rp 180.000
+                </p>
+
+                <div class="price-row">
+
+                    <strong>
+                        Rp 155.000
+                    </strong>
+
+                    <button
+                        onclick="addCart('Pupuk NPK Sawit',155000)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUK 2 -->
+
+        <div
+            class="product-card"
+            data-name="Bibit Kelapa Sawit Unggul"
+            data-category="Bibit"
+        >
+
+            <div class="discount">
+                -18%
+            </div>
+
+            <div class="product-image">
+                🌴
+            </div>
+
+            <div class="product-info">
+
+                <span class="category-label">
+                    Bibit
+                </span>
+
+                <h4>
+                    Bibit Kelapa Sawit Unggul
+                </h4>
+
+                <div class="rating">
+                    ⭐ 4.8
+                    <small>
+                        • 85 terjual
+                    </small>
+                </div>
+
+                <p class="old-price">
+                    Rp 55.000
+                </p>
+
+                <div class="price-row">
+
+                    <strong>
+                        Rp 45.000
+                    </strong>
+
+                    <button
+                        onclick="addCart('Bibit Kelapa Sawit Unggul',45000)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUK 3 -->
+
+        <div
+            class="product-card"
+            data-name="Egrek Panen Sawit"
+            data-category="Alat"
+        >
+
+            <div class="product-image">
+                🛠️
+            </div>
+
+            <div class="product-info">
+
+                <span class="category-label">
+                    Alat Kebun
+                </span>
+
+                <h4>
+                    Egrek Panen Sawit
+                </h4>
+
+                <div class="rating">
+                    ⭐ 4.7
+                    <small>
+                        • 64 terjual
+                    </small>
+                </div>
+
+                <p class="old-price">
+                    Rp 285.000
+                </p>
+
+                <div class="price-row">
+
+                    <strong>
+                        Rp 250.000
+                    </strong>
+
+                    <button
+                        onclick="addCart('Egrek Panen Sawit',250000)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUK 4 -->
+
+        <div
+            class="product-card"
+            data-name="Herbisida Kebun Sawit"
+            data-category="Pestisida"
+        >
+
+            <div class="discount">
+                -10%
+            </div>
+
+            <div class="product-image">
+                🧴
+            </div>
+
+            <div class="product-info">
+
+                <span class="category-label">
+                    Pestisida
+                </span>
+
+                <h4>
+                    Herbisida Kebun Sawit
+                </h4>
+
+                <div class="rating">
+                    ⭐ 4.6
+                    <small>
+                        • 93 terjual
+                    </small>
+                </div>
+
+                <p class="old-price">
+                    Rp 95.000
+                </p>
+
+                <div class="price-row">
+
+                    <strong>
+                        Rp 85.000
+                    </strong>
+
+                    <button
+                        onclick="addCart('Herbisida Kebun Sawit',85000)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUK 5 -->
+
+        <div
+            class="product-card"
+            data-name="Pupuk Dolomit Sawit"
+            data-category="Pupuk"
+        >
+
+            <div class="product-image">
+                🌿
+            </div>
+
+            <div class="product-info">
+
+                <span class="category-label">
+                    Pupuk
+                </span>
+
+                <h4>
+                    Pupuk Dolomit Sawit
+                </h4>
+
+                <div class="rating">
+                    ⭐ 4.8
+                    <small>
+                        • 150 terjual
+                    </small>
+                </div>
+
+                <p class="old-price">
+                    Rp 90.000
+                </p>
+
+                <div class="price-row">
+
+                    <strong>
+                        Rp 78.000
+                    </strong>
+
+                    <button
+                        onclick="addCart('Pupuk Dolomit Sawit',78000)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUK 6 -->
+
+        <div
+            class="product-card"
+            data-name="Sarung Tangan Kebun"
+            data-category="Alat"
+        >
+
+            <div class="product-image">
+                🧤
+            </div>
+
+            <div class="product-info">
+
+                <span class="category-label">
+                    Alat Kebun
+                </span>
+
+                <h4>
+                    Sarung Tangan Kebun
+                </h4>
+
+                <div class="rating">
+                    ⭐ 4.5
+                    <small>
+                        • 72 terjual
+                    </small>
+                </div>
+
+                <p class="old-price">
+                    Rp 40.000
+                </p>
+
+                <div class="price-row">
+
+                    <strong>
+                        Rp 32.000
+                    </strong>
+
+                    <button
+                        onclick="addCart('Sarung Tangan Kebun',32000)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL KERANJANG ================= -->
+
+<div
+    id="cartModal"
+    class="cart-modal"
+>
+
+    <div class="cart-content">
+
+
+        <!-- HEADER KERANJANG -->
+
+        <div class="cart-header">
+
+            <h3>
+                🛒 Keranjang Saya
+            </h3>
+
+            <button
+                onclick="closeCart()"
+                class="close-btn"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <!-- ISI KERANJANG -->
+
+        <div
+            id="cartItems"
+            class="cart-items"
+        >
+
+            <div class="empty-cart">
+
+                <div>
+                    🛒
+                </div>
+
+                <p>
+                    Keranjang masih kosong
+                </p>
+
+                <small>
+                    Tambahkan produk untuk mulai berbelanja
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="cart-footer">
+
+            <div class="total">
+
+                <span>
+                    Total Belanja
+                </span>
+
+                <strong id="cartTotal">
+                    Rp 0
+                </strong>
+
+            </div>
+
+
+            <button
+                class="checkout-btn"
+                onclick="checkout()"
+            >
+                Lanjut ke Pembayaran
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NOTIFIKASI ================= -->
+
+<div
+    id="notification"
+    class="notification"
+>
+    Produk ditambahkan
+</div>
+
+
+<script src="toko.js"></script>
+
+</body>
+</html>
